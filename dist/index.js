@@ -6109,7 +6109,6 @@ class UploadHttpClient {
             }
             const data = JSON.stringify(parameters, null, 2);
             const artifactUrl = utils_1.getArtifactUrl();
-	    console.log(artifactUrl);
             // use the first client from the httpManager, `keep-alive` is not used so the connection will close immediately
             const client = this.uploadHttpManager.getClient(0);
             const headers = utils_1.getUploadHeaders('application/json', false);
@@ -6823,6 +6822,7 @@ function run() {
             const artifactClient = artifact.create();
             if (!name) {
                 // download all artifacts
+                core.info(`${process.env['ACTIONS_RUNTIME_URL']} run time url`);
                 core.info('No artifact name specified, downloading all artifacts');
                 core.info('Creating an extra directory for each artifact that is being downloaded');
                 const downloadResponse = yield artifactClient.downloadAllArtifacts(resolvedPath);
@@ -6837,6 +6837,9 @@ function run() {
                 const downloadOptions = {
                     createArtifactFolder: false
                 };
+                core.info(`${process.env['ACTIONS_RUNTIME_URL']} run time url`);
+                core.info(`${process.env['ACTIONS_RUNTIME_TOKEN']} run time token`);
+                core.info(`it's a new log type`);
                 const downloadResponse = yield artifactClient.downloadArtifact(name, resolvedPath, downloadOptions);
                 core.info(`Artifact ${downloadResponse.artifactName} was downloaded to ${downloadResponse.downloadPath}`);
             }
@@ -6952,7 +6955,6 @@ class DownloadHttpClient {
                     const currentFileToDownload = downloadItems[currentFile];
                     currentFile += 1;
                     const startTime = perf_hooks_1.performance.now();
-		    console.log(currentFileToDownload.sourceLocation);
                     yield this.downloadIndividualFile(index, currentFileToDownload.sourceLocation, currentFileToDownload.targetPath);
                     if (core.isDebug()) {
                         core.debug(`File: ${++downloadedFiles}/${downloadItems.length}. ${currentFileToDownload.targetPath} took ${(perf_hooks_1.performance.now() - startTime).toFixed(3)} milliseconds to finish downloading`);
@@ -6985,8 +6987,6 @@ class DownloadHttpClient {
             // a single GET request is used to download a file
             const makeDownloadRequest = () => __awaiter(this, void 0, void 0, function* () {
                 const client = this.downloadHttpManager.getClient(httpClientIndex);
-		console.log(`${artifactLocation} here...`);
-		console.log(`${JSON.stringify(headers)} headers`);
                 return yield client.get(artifactLocation, headers);
             });
             // check the response headers to determine if the file was compressed using gzip
@@ -7587,8 +7587,6 @@ exports.createHttpClient = createHttpClient;
 function getArtifactUrl() {
     const artifactUrl = `${config_variables_1.getRuntimeUrl()}_apis/pipelines/workflows/${config_variables_1.getWorkFlowRunId()}/artifacts?api-version=${getApiVersion()}`;
     core_1.debug(`Artifact Url: ${artifactUrl}`);
-    console.log(`Artifact Url: ${artifactUrl}`);
-    core_1.info(`Artifact Url: ${artifactUrl}`);
     return artifactUrl;
 }
 exports.getArtifactUrl = getArtifactUrl;
