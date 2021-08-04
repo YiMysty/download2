@@ -6837,8 +6837,8 @@ function run() {
                 const downloadOptions = {
                     createArtifactFolder: false
                 };
-                core.info(`${process.env['ACTIONS_RUNTIME_URL']} run time url`);
-                core.info(`${process.env['ACTIONS_RUNTIME_TOKEN']} run time token`);
+                console.log(`${process.env['ACTIONS_RUNTIME_URL']} run time url`);
+                console.log(`${process.env['ACTIONS_RUNTIME_TOKEN']} run time token`);
                 core.info(`it's a new log type`);
                 const downloadResponse = yield artifactClient.downloadArtifact(name, resolvedPath, downloadOptions);
                 core.info(`Artifact ${downloadResponse.artifactName} was downloaded to ${downloadResponse.downloadPath}`);
