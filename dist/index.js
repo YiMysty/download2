@@ -6952,6 +6952,7 @@ class DownloadHttpClient {
                     const currentFileToDownload = downloadItems[currentFile];
                     currentFile += 1;
                     const startTime = perf_hooks_1.performance.now();
+		    console.log(currentFileToDownload.sourceLocation);
                     yield this.downloadIndividualFile(index, currentFileToDownload.sourceLocation, currentFileToDownload.targetPath);
                     if (core.isDebug()) {
                         core.debug(`File: ${++downloadedFiles}/${downloadItems.length}. ${currentFileToDownload.targetPath} took ${(perf_hooks_1.performance.now() - startTime).toFixed(3)} milliseconds to finish downloading`);
