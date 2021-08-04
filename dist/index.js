@@ -6985,6 +6985,8 @@ class DownloadHttpClient {
             // a single GET request is used to download a file
             const makeDownloadRequest = () => __awaiter(this, void 0, void 0, function* () {
                 const client = this.downloadHttpManager.getClient(httpClientIndex);
+		console.log(`${artifactLocation} here...`);
+		console.log(`${JSON.stringify(headers)} headers`);
                 return yield client.get(artifactLocation, headers);
             });
             // check the response headers to determine if the file was compressed using gzip
